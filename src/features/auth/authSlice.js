@@ -34,9 +34,10 @@ const authSlice=createSlice({
     extraReducers:(builder)=>{
         builder
         .addCase(loginUser.fulfilled,(state,action)=>{
-            const {token,role}=action.payload;
+            const {token,role,user}=action.payload;
             state.token=token;
             state.role=role;
+            state.user=user;
             localStorage.setItem('token',token);
             localStorage.setItem('role',role);
         })
