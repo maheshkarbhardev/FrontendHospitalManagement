@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   createDoctor,
   fetchDoctorById,
+  fetchDoctors,
   updateDoctor,
 } from "../features/doctor/doctorSlice";
 
@@ -18,10 +19,10 @@ const initialValues = {
 const CreateDoctor = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [formData, setFormData] = useState(initialValues);
   const { id } = useParams();
-  const { dr_first_name, dr_last_name, dr_mobile, dr_email, dr_specialty } =
-    formData;
+
+  const [formData, setFormData] = useState(initialValues);
+  const { dr_first_name, dr_last_name, dr_mobile, dr_email, dr_specialty } =formData;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -79,7 +80,7 @@ const CreateDoctor = () => {
               dr_email: "",
               dr_specialty: "",
             });
-          })
+          }).then(()=>{dispatch(fetchDoctors())})
           .catch((err) => {
             alert(err.response.data);
           });

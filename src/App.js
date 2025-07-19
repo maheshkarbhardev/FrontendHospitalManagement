@@ -10,6 +10,7 @@ import CreatePatient from "./pages/CreatePatient";
 import PrivateRoute from "./routes/PrivateRoutes";
 import RoleBasedRoute from "./routes/RoleBasedToken";
 import CreateDoctor from "./pages/CreateDoctor";
+import CreateAdmission from "./pages/CreateAdmission";
 
 function App() {
   return (
@@ -86,6 +87,28 @@ function App() {
               <PrivateRoute>
                 <RoleBasedRoute allowedRules={["admin", "doctor"]}>
                   <AdmissionList />
+                </RoleBasedRoute>
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/createAdmission"
+            element={
+              <PrivateRoute>
+                <RoleBasedRoute allowedRules={["admin", "doctor"]}>
+                  <CreateAdmission/>
+                </RoleBasedRoute>
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/updateAdmission/:id"
+            element={
+              <PrivateRoute>
+                <RoleBasedRoute allowedRules={["admin", "doctor"]}>
+                  <CreateAdmission/>
                 </RoleBasedRoute>
               </PrivateRoute>
             }
